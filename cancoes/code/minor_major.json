@@ -6,7 +6,7 @@
       "type": "csv"
     }
   },
-  "width": 500,
+  "width": 400,
   "height": 300,
   "transform": [
     {
@@ -33,9 +33,17 @@
       "field": "tom",
       "type": "quantitative",
       "aggregate": "sum",
-      "title": "Tom",
+      "title": "Quantidade de músicas das escalas",
       "stack": "normalize"
     },
-    "color": {"field": "mode_name", "type": "nominal"}
+    "color": {
+      "field": "mode_name", 
+      "title": "Escala",
+      "type": "nominal",
+      "scale": {"range": ["#e377c2", "#1f77b4"]}
+    }
+  },
+  "config": {
+    "axis": {"grid": false}
   }
 }
