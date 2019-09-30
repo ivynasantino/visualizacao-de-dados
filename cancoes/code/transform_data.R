@@ -1,4 +1,4 @@
-lana <- readr::read_csv("data/lana.csv")
+lana <- readr::read_csv("../data/lana.csv")
 
 mode_tom <- lana %>% 
     dplyr::group_by(album_name, mode_name) %>% 
@@ -12,4 +12,9 @@ mode_tom_major <- lana %>%
 mode <- dplyr::bind_rows(mode_tom_major, mode_tom_minor) %>% 
     dplyr::select(-mode_name)
 
-readr::write_csv(mode_tom, "data/tom.csv")
+group_tracks <- lana %>% 
+    dplyr::group_by(track_name, album_name) %>% 
+    dplyr::summarise(danceability_median = median(danceability),
+                     energy_median = median(energy))
+
+readr::write_csv(group_tracks, "../data/group_track_name.csv")

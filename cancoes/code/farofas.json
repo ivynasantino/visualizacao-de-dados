@@ -1,0 +1,44 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/ivynasantino/visualizacao-de-dados/master/cancoes/data/group_track_name.csv",
+    "format": {
+      "type": "csv"
+    }
+  },
+  "width": 500,
+  "height": 200,
+  "transform": [
+    {
+      "filter": {"and": [
+      {"field": "danceability_median", "valid": true},
+      {"field": "energy_median", "valid": true},
+      {"field": "album_name",
+      "oneOf": ["Lust For Life",
+                "Norman Fucking Rockwell!", 
+                "Born To Die"]}
+    ]}
+  }],
+  "title": "Distribuição das músicas ''farofas''",
+  "mark": {"type": "rect"},
+  "encoding": {
+    "y": {
+      "bin": {"maxbins": 40},
+      "field": "danceability_median",
+      "type": "quantitative",
+      "title": "Dançante"
+    },
+    "x": {
+      "bin": {"maxbins": 60},
+      "field": "energy_median",
+      "type": "quantitative",
+      "title": "Energia"
+    },
+    "color": {
+      "field": "album_name",
+      "type": "nominal",
+      "title": "Álbum"
+    },
+    "tooltip": {"field": "track_name"}
+  }
+}

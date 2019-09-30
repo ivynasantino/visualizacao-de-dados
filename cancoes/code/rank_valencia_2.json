@@ -1,0 +1,40 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/ivynasantino/visualizacao-de-dados/master/cancoes/data/lana.csv",
+    "format": {
+      "type": "csv"
+    }
+  },
+  "width": 500,
+  "height": 100,
+  "transform": [
+    {
+      "filter": {
+        "field": "album_name",
+        "oneOf": ["Lust For Life", 
+                  "Ultraviolence", 
+                  "Norman Fucking Rockwell!", 
+                  "Honeymoon", 
+                  "Ultraviolence", 
+                  "Paradise", 
+                  "Born To Die"]
+      }
+    }],
+  "title": "Valência dos álbuns",
+  "mark": {"type": "circle", "tooltip": true},
+  "encoding": {
+    "x": {
+      "field": "valence",
+      "type": "quantitative",
+      "aggregate": "median",
+      "title": "Valência"
+    },
+    "y": {
+      "field": "album_name",
+      "type": "nominal",
+      "title": "Álbum",
+      "sort": "x"
+    }
+  }
+}
