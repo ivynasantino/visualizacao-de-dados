@@ -1,0 +1,67 @@
+{"$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "data": {"url": "https://raw.githubusercontent.com/ivynasantino/visualizacao-de-dados/master/cancoes/data/lana.csv"},
+  "height": 300,
+  "width": 500,
+  "transform": [
+    {
+      "filter": {
+        "field": "album_name",
+        "oneOf": ["Lust For Life", 
+                  "Ultraviolence", 
+                  "Norman Fucking Rockwell!", 
+                  "Honeymoon",
+                  "Paradise", 
+                  "Born To Die"]
+      }
+    }],
+  "title": "Distribuição de valência nas músicas da Lana",
+  "layer": [
+    {
+      "mark": {
+        "type": "point",
+        "size": 200,
+        "color": "#42039D"
+      },
+      "encoding": {
+        "y": {
+          "field": "album_name",
+          "type": "ordinal",
+          "title": "Álbum"
+        },
+        "x": {
+          "field": "valence",
+          "aggregate": "median",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "opacity": 0.3
+      },
+      "encoding": {
+        "y": {
+          "field": "album_name",
+          "type": "ordinal",
+          "axis": {"title": "Álbum"}
+        },
+        "x": {
+          "field": "valence",
+          "type": "quantitative",
+          "axis": {"title": "Valência"}
+        },
+        "tooltip": [
+          {"field": "track_name", "title": "Música"},
+          {"field": "valence", "title": "Valência"}
+        ],
+        "color": {
+          "field": "valence",
+          "type": "quantitative",
+          "scale": {"range": ["#170C3B", "#420A68", "#932667", "#F3771A", "#F6D645"]},
+          "legend": {"title": "Valência"}
+        }
+      }
+    }
+  ]
+}
